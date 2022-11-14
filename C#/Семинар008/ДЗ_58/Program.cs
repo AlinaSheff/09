@@ -6,13 +6,6 @@
 // 18 20
 // 15 18
 
-
-Console.Clear();
-Console.Write("Введите количество строк двумерного массива: ");
-int m = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите количество столбцов двумерного массива: ");
-int n = Convert.ToInt32(Console.ReadLine());
-
 void FillArray(int[,] array)
 {
 for(int i = 0; i < array.GetLength(0); i++)
@@ -36,37 +29,44 @@ void PrintArray(int[,] array)
     }
 }
 
-int[,] array1 = new int[m, n];
+Console.Clear();
+Console.Write("Введите количество строк 1 массива: ");
+int m1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите количество столбцов 1 массива: ");
+int n1 = Convert.ToInt32(Console.ReadLine());
+int[,] array1 = new int[m1, n1];
 FillArray(array1);
 PrintArray(array1);
-Console.WriteLine();
-int[,] array2 = new int[m, n];
+
+Console.Write("Введите количество строк 2 массива: ");
+int m2 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите количество столбцов 2 массива: ");
+int n2 = Convert.ToInt32(Console.ReadLine());
+int[,] array2 = new int[m2, n2];
 FillArray(array2);
 PrintArray(array2);
 
-int[,] array3 = new int[m, n];
-
 void MultiplicationMatrix(int[,] array)
 {
-    int x = 0;
-    for(int i = 0; i < array.GetLength(0); i++)
+    if (array1.GetLength(1) != array2.GetLength(0)) Console.WriteLine("Такие матрицы умножать нельзя!");
+    else
     {
-        int b = 0;
-        for(int j = 0; j < array.GetLength(1); j++)
+        Console.WriteLine("Произведение двух матриц:");
+        
+        for(int i = 0; i < array1.GetLength(0); i++)
         {
-            int y = 0;
-            for(int a = 0; a < array2.GetLength(1); a++)
+            for(int j = 0; j < array2.GetLength(1); j++)
             {
-                array[i, j] += array1[x,y] * array2[a,b];
-                y++;
+                for(int k = 0; k < array1.GetLength(1); k++)
+                {
+                    array[i, j] += array1[i,k] * array2[k,j];
+                }
+                Console.Write(array[i,j] + " ");
             }
-            Console.Write(array[i,j] + " ");
-            b++;
+            Console.WriteLine();
         }
-        Console.WriteLine();
-        x++;
     }
 }
 
-Console.WriteLine("Произведение двух матриц:");
+int[,] array3 = new int[array1.GetLength(0), array2.GetLength(1)];
 MultiplicationMatrix(array3);
