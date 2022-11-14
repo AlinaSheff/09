@@ -9,14 +9,14 @@
 
 void FillArray(int[,,] array)
 {
-for(int i = 0; i < array.GetLength(0); i++)
-{
-    for(int j = 0; j < array.GetLength(1); j++)
+    for(int i = 0; i < array.GetLength(0); i++)
     {
-        for(int k = 0; k < array.GetLength(2); k++)
-        array[i, j, k] = new Random().Next(10, 100);
+        for(int j = 0; j < array.GetLength(1); j++)
+        {
+            for(int k = 0; k < array.GetLength(2); k++)
+            array[i, j, k] = new Random().Next(10, 100);
+        }
     }
-}
 }
 
 void PrintArray(int[,,] array)
@@ -41,4 +41,30 @@ int n = Convert.ToInt32(Console.ReadLine());
 int l = Convert.ToInt32(Console.ReadLine());
 int[,,] array = new int[m, n, l];
 FillArray(array);
+NewArray(array);
 PrintArray(array);
+
+void NewArray(int[,,] array)
+{
+    for(int i = 0; i < array.GetLength(0); i++)
+    {
+        for(int j = 0; j < array.GetLength(1); j++)
+        {
+            for(int k = 0; k < array.GetLength(2); k++)
+            {
+                for(int a = 0; a < array.GetLength(0); a++)
+                {
+                    for(int b = 0; b < array.GetLength(1); b++)
+                    {
+                        for(int c = 0; c < array.GetLength(2); c++)
+                        {
+                            if (array[i, j, k] == array[a, b, c]) array[i, j, k] = new Random().Next(10, 100);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
